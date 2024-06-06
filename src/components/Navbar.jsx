@@ -11,7 +11,7 @@ function Navbar() {
           Home
         </a>
       </h2>
-      <ul className="flex gap-4 items-center text-xl">
+      <ul className="hidden lg:flex gap-4 items-center text-xl ">
         <li>
           <a
             href="/#home"
