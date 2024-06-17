@@ -29,24 +29,24 @@ function Navbar() {
           </a>{" "}
         </li>
         <li>
-          <a
-            href="/#gas"
-            className="hover:text-lime-600 transition-all pr-4 border-r-2"
-          >
-            Smoke
-          </a>
-        </li>
-        <li>
-          <a
-            href="/#soil"
-            className="hover:text-lime-600 transition-all pr-4 border-r-2"
-          >
-            Soil Humidity
-          </a>
-        </li>
-        <li>
           <a href="/#fish" className="hover:text-lime-600 transition-all pr-4 ">
             Fish
+          </a>
+        </li>
+        <li>
+          <a
+            href="/#rain"
+            className="hover:text-lime-600 transition-all pr-4 border-r-2"
+          >
+            Rain
+          </a>
+        </li>
+        <li>
+          <a
+            href="/#tank"
+            className="hover:text-lime-600 transition-all pr-4 border-r-2"
+          >
+            Tank
           </a>
         </li>
       </ul>

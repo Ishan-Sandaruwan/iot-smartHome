@@ -4,7 +4,7 @@ import { database, ref, onValue, set } from "../firebase";
 export default function Fish() {
   const [error, setError] = useState(null);
   const [timer, setTimer] = useState(true);
-  const [newTime, setNewTime] = useState("");
+  const [newTime, setNewTime] = useState(null);
 
   useEffect(() => {
     const gasRef = ref(database, "FISH/timer");
@@ -36,7 +36,7 @@ export default function Fish() {
   const handleNewTime = async () => {
     try {
       await set(ref(database, "FISH/timer"), newTime);
-      setNewTime("");
+      setNewTime(null);
     } catch (error) {
       setError(error.message);
       console.error("Firebase error: ", error);
@@ -44,7 +44,7 @@ export default function Fish() {
   };
 
   return (
-    <div id="fish" className="p-2 py-20 ">
+    <div id="fish" className="p-2 py-20 border-b border-lime-500">
       <div>
         <h1 className="text-3xl font-semibold text-black">Fish Feeder</h1>
         {error ? (
@@ -67,7 +67,7 @@ export default function Fish() {
                   id="newTime"
                   value={newTime}
                   placeholder="Ex: 75"
-                  onChange={(e) => setNewTime(e.target.value)}
+                  onChange={(e) => setNewTime(Number(e.target.value))}
                   className="py-1 px-3 rounded-md"
                 />
                 <button

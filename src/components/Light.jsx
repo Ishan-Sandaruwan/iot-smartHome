@@ -7,7 +7,7 @@ export default function Light() {
   const [manual_val, setManual_val] = useState(-1);
   const [error, setError] = useState(null);
   const [auto, setAuto] = useState(true);
-  const [newVal, setNewVal] = useState("");
+  const [newVal, setNewVal] = useState(null);
 
   useEffect(() => {
     const BrightnesRef = ref(database, "LED/Brightness");
@@ -98,7 +98,7 @@ export default function Light() {
   const handleNewVal = async () => {
     try {
       await set(ref(database, "LED/manual_val"), newVal);
-      setNewVal("");
+      setNewVal(null);
     } catch (error) {
       setError(error.message);
       console.error("Firebase error: ", error);
@@ -106,7 +106,7 @@ export default function Light() {
   };
 
   return (
-    <div id="light" className="p-2 py-20 border-b border-lime-500">
+    <div id="light" className="p-2 border-b border-lime-500">
       <div>
         <h1 className="text-3xl font-semibold text-black">Light Controll</h1>
         {error ? (
@@ -117,13 +117,13 @@ export default function Light() {
               <div>
                 <p>Light Brightness Level</p>
                 <p>
-                  <span>{auto ? Brightness : manual_val}</span>%
+                  <span>{auto ? Brightness : manual_val}</span>
                 </p>
               </div>
               <div>
                 <p>Environment Darknesss</p>
                 <p>
-                  <span>{Env_Dark}</span>%
+                  <span>{Env_Dark}</span>
                 </p>
               </div>
             </div>
@@ -134,14 +134,16 @@ export default function Light() {
               </button>
             </div>
             <div className="flex flex-col gap-4 ">
-              <label htmlFor="newVal" className="text-xl">Change Brightness Manually</label>
+              <label htmlFor="newVal" className="text-xl">
+                Change Brightness Manually
+              </label>
               <div className="flex gap-2 justify-between">
                 <input
                   type="text"
                   id="newVal"
                   value={newVal}
                   placeholder="Ex: 75"
-                  onChange={(e) => setNewVal(e.target.value)}
+                  onChange={(e) => setNewVal(Number(e.target.value))}
                   className="py-1 px-3 rounded-md"
                 />
                 <button
